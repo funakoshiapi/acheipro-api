@@ -26,9 +26,12 @@ namespace AcheiProApi.Presentation.Controllers
 			return NoContent();
 		}
 
-
+		/// <summary>
+		/// Gets the list of all companies
+		/// </summary>
+		/// <returns>The companies list</returns>
 		[HttpGet(Name = "GetCompanies")]
-		[Authorize]
+		[Authorize(Roles = "Manager")]
 		public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters companyParameters)
 		{
             
@@ -56,8 +59,20 @@ namespace AcheiProApi.Presentation.Controllers
 			return Ok(company);
 		}
 
-		[HttpPost]
-		[ServiceFilter(typeof(ValidationFilterAttribute))]
+		/// <summary>
+        /// Creates a new company
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns>A newly created company</returns>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">If the item is null</response>
+        /// <response code="422">If the model is invalid</response>
+		/// 
+        [HttpPost  (Name ="CreateCompany")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
 		public async Task<IActionResult> CreateCompany([FromBody] CompanyCreationDto company)
 		{
 
