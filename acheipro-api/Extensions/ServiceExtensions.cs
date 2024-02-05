@@ -49,7 +49,7 @@ namespace acheipro_api.Extensions
 		{
 
 			var connectionString = new NpgsqlConnectionStringBuilder(configuration.GetConnectionString("DefaultConnection"));
-            connectionString.Password = Environment.GetEnvironmentVariable("DbPassword");
+            //connectionString.Password = Environment.GetEnvironmentVariable("DbPassword");
 
             services.AddDbContext<RepositoryContext>(options => options.UseNpgsql(connectionString.ToString(),
                 x => x.MigrationsAssembly("acheipro-api")));

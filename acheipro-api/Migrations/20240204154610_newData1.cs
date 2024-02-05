@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace acheipro_api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialData : Migration
+    public partial class newData1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,7 @@ namespace acheipro_api.Migrations
                     FirstName = table.Column<string>(type: "text", nullable: true),
                     LastName = table.Column<string>(type: "text", nullable: true),
                     RefreshToken = table.Column<string>(type: "text", nullable: true),
-                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -66,7 +66,8 @@ namespace acheipro_api.Migrations
                     Address = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
                     Industry = table.Column<string>(type: "text", nullable: false),
                     Country = table.Column<string>(type: "text", nullable: true),
-                    Province = table.Column<string>(type: "text", nullable: true)
+                    Province = table.Column<string>(type: "text", nullable: true),
+                    Role = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -204,17 +205,17 @@ namespace acheipro_api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "c2bfa27b-9716-46d8-abe6-928932d65035", null, "Administrator", "ADMINISTRATOR" },
-                    { "f90ec8d5-09c2-420b-9403-039f3802eccf", null, "Manager", "MANAGER" }
+                    { "61b797c7-7c66-41ff-a460-7e7ea4e08128", null, "Administrator", "ADMINISTRATOR" },
+                    { "ea6dc507-e68f-4752-a8cb-dff862ae0fec", null, "Manager", "MANAGER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Companies",
-                columns: new[] { "CompanyId", "Address", "Country", "Industry", "Name", "Province" },
+                columns: new[] { "CompanyId", "Address", "Country", "Industry", "Name", "Province", "Role" },
                 values: new object[,]
                 {
-                    { new Guid("af58eeaa-9f5b-11ee-8c90-0242ac120002"), "Golfe 2, Rua 3, Luanda,Angola", "Angola", "Vendas", "Luanda Limitada", "Luanda" },
-                    { new Guid("c0f33166-9f5b-11ee-8c90-0242ac120002"), "Talatona, Rua 6, Luanda,Angola", "Angola", "Tecnologia", "Solucoes TI ", "Luanda" }
+                    { new Guid("af58eeaa-9f5b-11ee-8c90-0242ac120002"), "Golfe 2, Rua 3, Luanda,Angola", "Angola", "Vendas", "Luanda Limitada", "Luanda", null },
+                    { new Guid("c0f33166-9f5b-11ee-8c90-0242ac120002"), "Talatona, Rua 6, Luanda,Angola", "Angola", "Tecnologia", "Solucoes TI ", "Luanda", null }
                 });
 
             migrationBuilder.InsertData(

@@ -4,16 +4,16 @@
         <name>acheipro-api</name>
     </assembly>
     <members>
-        <member name="T:acheipro_api.Migrations.InitialData">
+        <member name="T:acheipro_api.Migrations.newData1">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.InitialData.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:acheipro_api.Migrations.newData1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.InitialData.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:acheipro_api.Migrations.newData1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.InitialData.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:acheipro_api.Migrations.newData1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

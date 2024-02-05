@@ -12,8 +12,8 @@ using Repository;
 namespace acheipro_api.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240130144305_InitialData")]
-    partial class InitialData
+    [Migration("20240204154610_newData1")]
+    partial class newData1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,9 @@ namespace acheipro_api.Migrations
                         .HasColumnType("character varying(60)");
 
                     b.Property<string>("Province")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -172,7 +175,7 @@ namespace acheipro_api.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("RefreshTokenExpiryTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -224,13 +227,13 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f90ec8d5-09c2-420b-9403-039f3802eccf",
+                            Id = "ea6dc507-e68f-4752-a8cb-dff862ae0fec",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "c2bfa27b-9716-46d8-abe6-928932d65035",
+                            Id = "61b797c7-7c66-41ff-a460-7e7ea4e08128",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
