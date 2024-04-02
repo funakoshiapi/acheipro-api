@@ -42,9 +42,13 @@
 
   <ItemGroup>
     <None Remove="Extensions\" />
+    <None Remove="Resources\" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LoggerService\LoggerService.csproj">

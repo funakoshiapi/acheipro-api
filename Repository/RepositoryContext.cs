@@ -22,8 +22,16 @@ namespace Repository
 			modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<string>().UseCollation("und-u-ks-level1-kc-true");
+        }
+
+
         public DbSet<Company>? Companies { get; set; }
 		public DbSet<Employee>? Employees { get; set; }
+		public DbSet<CompanyImage>? CompanyImages { get; set; }
+		public DbSet<CompanyData>? CompanyDatas { get; set; }
 
     }
 }

@@ -5,6 +5,8 @@ namespace Service.Contracts
 	{
 		ICompanyService CompanyService { get; }
 		IEmployeeService EmployeeService { get;  }
+		ICompanyImageService CompanyImageService { get; }
+		ICompanyDataService CompanyDataService { get; }
 		IAuthenticationService AuthenticationService { get; }
 	}
 }

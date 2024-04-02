@@ -32,25 +32,47 @@ namespace acheipro_api.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
+                        .HasColumnType("character varying(60)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Country")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Industry")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
+                        .HasColumnType("character varying(60)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Province")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Role")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("Id");
 
@@ -60,21 +82,71 @@ namespace acheipro_api.Migrations
                         new
                         {
                             Id = new Guid("af58eeaa-9f5b-11ee-8c90-0242ac120002"),
-                            Address = "Golfe 2, Rua 3, Luanda,Angola",
+                            Address = "Golfe 2, Rua 3",
                             Country = "Angola",
-                            Industry = "Vendas",
-                            Name = "Luanda Limitada",
-                            Province = "Luanda"
+                            Industry = "Juridicos",
+                            Name = "Luanda Legal LLC",
+                            Province = "Luanda",
+                            Role = "Advogado"
                         },
                         new
                         {
                             Id = new Guid("c0f33166-9f5b-11ee-8c90-0242ac120002"),
-                            Address = "Talatona, Rua 6, Luanda,Angola",
+                            Address = "Talatona, Rua 6",
                             Country = "Angola",
-                            Industry = "Tecnologia",
-                            Name = "Solucoes TI ",
-                            Province = "Luanda"
+                            Industry = "Contabilidade",
+                            Name = "Contabilistical LLC",
+                            Province = "Luanda",
+                            Role = "Contabilidade"
                         });
+                });
+
+            modelBuilder.Entity("Entities.Models.CompanyData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("CompanyDataId");
+
+                    b.Property<string>("CompanyDescription")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("CompanyId");
+
+                    b.Property<string>("CompanyMission")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompanyDatas");
+                });
+
+            modelBuilder.Entity("Entities.Models.CompanyImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("ImageId");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("CompanyId");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompanyImages");
                 });
 
             modelBuilder.Entity("Entities.Models.Employee", b =>
@@ -90,12 +162,14 @@ namespace acheipro_api.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
+                        .HasColumnType("character varying(60)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Position")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
+                        .HasColumnType("character varying(60)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("Id");
 
@@ -123,27 +197,35 @@ namespace acheipro_api.Migrations
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("character varying(256)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -153,36 +235,43 @@ namespace acheipro_api.Migrations
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("character varying(256)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("character varying(256)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
                     b.Property<string>("RefreshToken")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<DateTime>("RefreshTokenExpiryTime")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("character varying(256)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("Id");
 
@@ -199,19 +288,23 @@ namespace acheipro_api.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("character varying(256)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("character varying(256)")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("Id");
 
@@ -224,15 +317,21 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ea6dc507-e68f-4752-a8cb-dff862ae0fec",
+                            Id = "2abecc7a-10d1-45da-b154-8dac7b72ffc3",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "61b797c7-7c66-41ff-a460-7e7ea4e08128",
+                            Id = "2c1fe9e6-8353-46c7-a2e7-74bcc4d619dc",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "588d3c20-a8e2-413e-85a9-89c406eafc33",
+                            Name = "User",
+                            NormalizedName = "USER"
                         });
                 });
 
@@ -245,14 +344,17 @@ namespace acheipro_api.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("Id");
 
@@ -270,14 +372,17 @@ namespace acheipro_api.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("Id");
 
@@ -289,17 +394,21 @@ namespace acheipro_api.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -311,10 +420,12 @@ namespace acheipro_api.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -326,16 +437,20 @@ namespace acheipro_api.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.Property<string>("Value")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .UseCollation("und-u-ks-level1-kc-true");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 

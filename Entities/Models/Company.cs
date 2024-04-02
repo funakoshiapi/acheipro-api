@@ -22,8 +22,14 @@ namespace Entities.Models
 
         public string? Country { get; set; }
         public string? Province { get; set; }
+        public string? Role { get; set; }
+        public string? ImageName { get; set; }
+        public string? Telephone { get; set; }
+        public string? Email { get; set; }
+        public string? Website { get; set; }
 
-        public ICollection<Employee>? Employees { get; set; }
+        public ICollection<Employee>? Employees { get; set;}
+      
     }
 }
 

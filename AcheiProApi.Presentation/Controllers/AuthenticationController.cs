@@ -1,5 +1,6 @@
 ﻿using System;
 using AcheiProApi.Presentation.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
@@ -47,6 +48,7 @@ namespace AcheiProApi.Presentation.Controllers
 
 			return Ok(tokenDto);
         }
+
     }
 
 

@@ -5,6 +5,8 @@ namespace Contracts
 	{
 		ICompanyRepository Company { get; }
 		IEmployeeRepository Employee { get; }
+		ICompanyDataRepository CompanyData { get; }
+        ICompanyImageRepository CompanyImage {get; }
 		Task SaveAsync();
 	}
 }

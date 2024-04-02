@@ -3,9 +3,14 @@ using AutoMapper;
 using Contracts;
 using Entities.Exceptions;
 using Entities.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Service.Contracts;
 using Shared.DataTransferObjects;
 using Shared.RequestFeatures;
+
+
 
 namespace Service
 {
@@ -15,12 +20,15 @@ namespace Service
         private readonly IRepositoryManager _repository;
 		private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+        private User? _user;
 
-        public CompanyService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public CompanyService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, UserManager<User> userManager)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task DeleteCompanyAsync(Guid companyId, bool trackChanges)
@@ -122,6 +130,54 @@ namespace Service
             return company;
         }
 
+        public async Task<UserDto> GetUserFromCompanyId(string username)
+        {
+            _user = await _userManager.FindByNameAsync(username);
+
+            if (_user == null)
+            {
+                return new UserDto();
+            }
+
+            var user = new UserDto()
+            {
+                CompanyId = _user.CompanyId,
+                UserName = username
+            };
+
+            return user;
+        }
+
+        public async Task<UserDto> UpdateUserCompanyId(string username, Guid companyId)
+        {
+            _user = await _userManager.FindByNameAsync(username);
+
+            if(_user == null)
+            {
+                return new UserDto();
+            }
+
+            if (companyId == System.Guid.Empty)
+            {
+                _user.CompanyId = null;
+            }
+            else
+            {
+                _user.CompanyId = companyId;
+            }
+            
+            await _userManager.UpdateAsync(_user);
+
+
+            var user = new UserDto()
+            {
+                CompanyId = _user.CompanyId,
+                UserName = username
+            };
+
+            return user;
+
+        }
     }
 }
 

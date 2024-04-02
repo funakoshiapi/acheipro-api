@@ -14,21 +14,23 @@ namespace Repository.Configuration
 				new Company
 				{
 					Id = new Guid("af58eeaa-9f5b-11ee-8c90-0242ac120002"),
-					Name = "Luanda Limitada",
-					Address = "Golfe 2, Rua 3, Luanda,Angola",
+					Name = "Luanda Legal LLC",
+					Address = "Golfe 2, Rua 3",
 					Country = "Angola",
 					Province = "Luanda",
-					Industry = "Vendas"
+					Industry = "Juridicos",
+					Role = "Advogado"
 				},
 
                 new Company
                 {
                     Id = new Guid("c0f33166-9f5b-11ee-8c90-0242ac120002"),
-                    Name = "Solucoes TI ",
-                    Address = "Talatona, Rua 6, Luanda,Angola",
+                    Name = "Contabilistical LLC",
+                    Address = "Talatona, Rua 6",
                     Country = "Angola",
                     Province = "Luanda",
-					Industry = "Tecnologia"
+					Industry = "Contabilidade",
+                    Role = "Contabilidade"
                 }
             );
 		}

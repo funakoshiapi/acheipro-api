@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NLog;
@@ -55,9 +56,6 @@ builder.Services.AddControllers(config =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagger();
 
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -80,10 +78,16 @@ if (app.Environment.IsProduction())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+    RequestPath = new PathString("/Resources")
+});
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.All
 });
+
 app.UseIpRateLimiting();
 app.UseCors("CorsPolicy");
 app.UseResponseCaching();

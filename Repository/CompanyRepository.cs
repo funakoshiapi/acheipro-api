@@ -5,6 +5,7 @@ using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Repository.Extensions;
 using Shared.RequestFeatures;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Repository
 {
@@ -29,13 +30,13 @@ namespace Repository
 		{
 			if(!String.IsNullOrEmpty(companyParameters.Province) && !String.IsNullOrEmpty(companyParameters.Industry))
 			{
-                var companies = await FindByCondition(c => c.Province.ToUpper().Equals(companyParameters.Province) && c.Industry.ToUpper().Equals(companyParameters.Industry), trackChanges)
+                var companies = await FindByCondition(c => c.Province.ToUpper().Contains(companyParameters.Province.ToUpper()) && c.Industry.ToUpper().Contains(companyParameters.Industry.ToUpper()), trackChanges)
 				.Sort(companyParameters.OrderBy)
                 .Skip((companyParameters.PageNumber - 1) * companyParameters.PageSize)
                 .Take(companyParameters.PageSize)
                 .ToListAsync();
 
-                var count = companies.Count();
+                var count = await FindByCondition(c => c.Province.ToUpper().Equals(companyParameters.Province.ToUpper()) && c.Industry.ToUpper().Equals(companyParameters.Industry.ToUpper()), trackChanges).CountAsync();
 
                 return new PagedList<Company>(companies, count, companyParameters.PageNumber, companyParameters.PageSize);
             }
@@ -43,24 +44,24 @@ namespace Repository
 
             if (!String.IsNullOrEmpty(companyParameters.Province))
             {
-                var companies = await FindByCondition(c => c.Province.ToUpper().Equals(companyParameters.Province), trackChanges)
+                var companies = await FindByCondition(c => c.Province.ToUpper().Equals(companyParameters.Province.ToUpper()), trackChanges)
                 .Sort(companyParameters.OrderBy)
-                 .Skip((companyParameters.PageNumber - 1) * companyParameters.PageSize)
+                .Skip((companyParameters.PageNumber - 1) * companyParameters.PageSize)
                 .Take(companyParameters.PageSize)
                 .ToListAsync();
 
-                var count = companies.Count();
+                var count = await FindByCondition(c => c.Province.ToUpper().Equals(companyParameters.Province.ToUpper()), trackChanges).CountAsync();
 
                 return new PagedList<Company>(companies, count, companyParameters.PageNumber, companyParameters.PageSize);
             }
 
             if (!String.IsNullOrEmpty(companyParameters.Industry))
             {
-                var companies =  await FindByCondition(c => c.Industry.ToUpper().Equals(companyParameters.Industry), trackChanges)
+                var companies =  await FindByCondition(c => c.Industry.ToUpper().Equals(companyParameters.Industry.ToUpper()), trackChanges)
                 .Sort(companyParameters.OrderBy)
                 .ToListAsync();
 
-                var count = companies.Count();
+                var count = await FindByCondition(c => c.Industry.ToUpper().Equals(companyParameters.Industry.ToUpper()), trackChanges).CountAsync();
 
                 return new PagedList<Company>(companies, count, companyParameters.PageNumber, companyParameters.PageSize);
             }
@@ -71,7 +72,7 @@ namespace Repository
              .Take(companyParameters.PageSize)
              .ToListAsync();
 
-            var countResult = companyResult.Count();
+            var countResult = await FindAll(trackChanges).CountAsync();
 
             return new PagedList<Company>(companyResult, countResult, companyParameters.PageNumber, companyParameters.PageSize);
 
@@ -85,6 +86,7 @@ namespace Repository
         public async Task<Company> GetCompanyAsync(Guid companyId, bool trackChanges) =>
 			await FindByCondition(c => c.Id.Equals(companyId), trackChanges)
 			.SingleOrDefaultAsync();
+
     }
 }
 

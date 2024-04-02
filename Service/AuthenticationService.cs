@@ -59,14 +59,33 @@ namespace Service
 
 			if(!result)
 			{
-				_logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. Wrong user name or password");
+				_logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. Wrong username or password");
 			}
 
 			return result;
         }
 
 
- 
+        public async Task<UserDto> GetUserCompanyId(string userName)
+        {
+        
+           _user = await _userManager.FindByNameAsync(userName);
+
+            if (_user == null)
+            {
+                return new UserDto();
+            }
+
+            var user = new UserDto()
+            {
+                CompanyId = _user.CompanyId,
+                UserName = userName
+            };
+
+            return user;
+
+        }
+
         public async Task<TokenDto> CreateToken(bool populateExp)
         {
             var signingCredentials = GetSigningCredentials();
@@ -163,7 +182,7 @@ namespace Service
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SECRET"))),
-                ValidateLifetime = true,
+                ValidateLifetime = false,
                 ValidIssuer = _jwtConfiguration.ValidIssuer,
                 ValidAudience = _jwtConfiguration.ValidAudience,
             };
@@ -180,6 +199,7 @@ namespace Service
             }
             return principal;
         }
+
 
     }
 }

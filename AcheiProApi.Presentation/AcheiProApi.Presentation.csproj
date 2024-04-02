@@ -10,7 +10,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="7.0.14" />
     <PackageReference Include="Marvin.Cache.Headers" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
   </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+ </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Service.Contracts\Service.Contracts.csproj" />
   </ItemGroup>

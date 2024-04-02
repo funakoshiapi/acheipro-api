@@ -21,7 +21,6 @@ namespace Repository
                 return RepositoryContext.Set<T>().AsNoTracking(); 
                    
             }
-
              return RepositoryContext.Set<T>();   
         }
 
