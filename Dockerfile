@@ -16,9 +16,11 @@ COPY ["Entities/Entities.csproj", "Entities/"]
 COPY ["Repository/Repository.csproj", "Repository/"]
 COPY ["Service/Service.csproj", "Service/"]
 
+RUN mkdir /acheipro-api/Resources
 
 RUN dotnet restore "acheipro-api/acheipro-api.csproj"
 COPY . .
+
 WORKDIR "/src/acheipro-api"
 RUN dotnet build "acheipro-api.csproj" -c Release -o /app/build
 
