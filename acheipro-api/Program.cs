@@ -90,7 +90,7 @@ app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-    RequestPath = new PathString("/Resources")
+    RequestPath = new PathString("acheipro-api/Resources")
 });
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
