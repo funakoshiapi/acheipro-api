@@ -20,7 +20,7 @@ using Service;
 var builder = WebApplication.CreateBuilder(args);
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
-builder.WebHost.UseUrls($"http://*:{port}");
+builder.WebHost.UseUrls($"http://*:{port}"); 
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
@@ -89,8 +89,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"src/acheipro-api/Resources")),
-    RequestPath = new PathString("/src/acheipro-api/Resources")
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+    RequestPath = new PathString("/Resources")
 });
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
