@@ -89,8 +89,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-    RequestPath = new PathString("acheipro-api/Resources")
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"acheipro-api/Resources")),
+    RequestPath = new PathString("/Resources")
 });
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
