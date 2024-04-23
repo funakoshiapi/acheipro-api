@@ -26,6 +26,7 @@ namespace acheipro_api
 			CreateMap<UserForRegistrationDto, User>();
 			CreateMap<CompanyImageDto, CompanyImage>();
 			CreateMap<CompanyImage, CompanyImageDto>();
+			CreateMap<ClientMessageDto, ClientMessage>();
         }
 
 	}

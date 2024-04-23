@@ -5,6 +5,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Service.Contracts;
 
 namespace Service
@@ -16,8 +17,9 @@ namespace Service
 		private readonly Lazy<IAuthenticationService> _authenticationService;
 		private readonly Lazy<ICompanyImageService> _companyImageService;
         private readonly Lazy<ICompanyDataService> _companyDataService;
+		private readonly Lazy<ISendEmail> _sendEmailService;
 
-        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, UserManager<User> userManager, IConfiguration configuration, IWebHostEnvironment environment)
+        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, UserManager<User> userManager, IConfiguration configuration, IWebHostEnvironment environment, IOptions<SmtpSettings> smtpSettings)
 		{
 			_companyService = new Lazy<ICompanyService>(() => new CompanyService(repositoryManager, logger, mapper, userManager));
 			_employeeService = new Lazy<IEmployeeService>(() => new EmployeeService(repositoryManager, logger, mapper));
@@ -25,7 +27,7 @@ namespace Service
             _authenticationService = new Lazy<IAuthenticationService>(() =>
 				new AuthenticationService(logger, mapper, userManager, configuration));
 			_companyImageService = new Lazy<ICompanyImageService>(() => new CompanyImageService(repositoryManager, logger, mapper, environment));
-
+			_sendEmailService = new Lazy<ISendEmail>(() => new SendEmail(smtpSettings, environment, mapper, repositoryManager));
         }
 
 		public ICompanyService CompanyService => _companyService.Value;
@@ -33,6 +35,8 @@ namespace Service
 		public ICompanyDataService CompanyDataService => _companyDataService.Value;
         public ICompanyImageService CompanyImageService => _companyImageService.Value;
         public IAuthenticationService AuthenticationService => _authenticationService.Value;
-	}
+		public ISendEmail SendEmailService => _sendEmailService.Value;
+
+    }
 }
 

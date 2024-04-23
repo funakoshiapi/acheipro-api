@@ -10,6 +10,7 @@ namespace Repository
         private readonly Lazy<IEmployeeRepository> _employeeRepository;
         private readonly Lazy<ICompanyImageRepository> _companyImageRepository;
         private readonly Lazy<ICompanyDataRepository> _companyDataRepository;
+        private readonly Lazy<IClientMessageRepository> _ClientMessageRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
 		{
@@ -18,6 +19,7 @@ namespace Repository
             _employeeRepository = new Lazy<IEmployeeRepository>(() => new EmployeeRepository(repositoryContext));
             _companyImageRepository = new Lazy<ICompanyImageRepository>(() => new CompanyImageRepository(repositoryContext));
             _companyDataRepository = new Lazy<ICompanyDataRepository>(() => new CompanyDataRepository(repositoryContext));
+            _ClientMessageRepository = new Lazy<IClientMessageRepository>(() => new ClientMessageRepository(repositoryContext));
 
         }
 
@@ -25,6 +27,7 @@ namespace Repository
         public IEmployeeRepository Employee => _employeeRepository.Value;
         public ICompanyImageRepository CompanyImage => _companyImageRepository.Value;
         public ICompanyDataRepository CompanyData => _companyDataRepository.Value;
+        public IClientMessageRepository ClientMessage => _ClientMessageRepository.Value;
         public async Task SaveAsync() => await  _repositoryContext.SaveChangesAsync();
     }
 }

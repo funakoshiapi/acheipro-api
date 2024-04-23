@@ -4,28 +4,16 @@
         <name>acheipro-api</name>
     </assembly>
     <members>
-        <member name="T:acheipro_api.Migrations.initialMigration">
+        <member name="T:acheipro_api.Migrations.clientMessage5">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.initialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:acheipro_api.Migrations.clientMessage5.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.initialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:acheipro_api.Migrations.clientMessage5.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:acheipro_api.Migrations.initialMigration2">
-            <inheritdoc />
-        </member>
-        <member name="M:acheipro_api.Migrations.initialMigration2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:acheipro_api.Migrations.initialMigration2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:acheipro_api.Migrations.initialMigration2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:acheipro_api.Migrations.clientMessage5.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>
