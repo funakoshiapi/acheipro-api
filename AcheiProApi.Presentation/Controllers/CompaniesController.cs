@@ -28,7 +28,8 @@ namespace AcheiProApi.Presentation.Controllers
 		public async Task<IActionResult> DeleteCompany(Guid id)
 		{
 			await _service.CompanyService.DeleteCompanyAsync(id, trackchanges: false);
-			return NoContent();
+            await _service.CompanyDataService.DeleteCompanyDataAsync(id, trackChanges: false);
+            return NoContent();
 		}
 
 
