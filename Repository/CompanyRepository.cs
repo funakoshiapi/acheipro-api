@@ -23,6 +23,9 @@ namespace Repository
 
         public void CreateCompany(Company company)
         {
+            company.Address.ToUpper();
+            company.Name.ToUpper();
+
 			Create(company);
         }
 
