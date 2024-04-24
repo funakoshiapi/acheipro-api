@@ -115,6 +115,18 @@ namespace Service
         {
             var companyEntity = await GetCompanyAndChekIfItExists(companyId, trackChanges);
 
+            companyEntity.Name.Trim();
+            companyEntity.Address.Trim();
+            companyEntity.Industry.Trim();
+            companyEntity.Country.Trim();
+            companyEntity.Province.Trim();
+            companyEntity.Telephone.Trim();
+            companyEntity.Email.Trim();
+            companyEntity.Website.Trim();
+
+            companyEntity.Address.ToUpper();
+            companyEntity.Name.ToUpper();
+
             _mapper.Map(companyForUpdate, companyEntity);
             await _repository.SaveAsync();
 

@@ -23,6 +23,15 @@ namespace Repository
 
         public void CreateCompany(Company company)
         {
+            company.Name.Trim();
+            company.Address.Trim();
+            company.Industry.Trim();
+            company.Country.Trim();
+            company.Province.Trim();
+            company.Telephone.Trim();
+            company.Email.Trim();
+            company.Website.Trim();
+
             company.Address.ToUpper();
             company.Name.ToUpper();
 
