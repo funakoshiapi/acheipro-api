@@ -7,7 +7,7 @@ namespace Contracts
 	{
         void Delete(CompanyImage image);
         void AddImage(CompanyImage image);
-        Task<CompanyImage> GetCompanyImage(Guid companyId, bool trackChanges);
+        CompanyImage GetCompanyImage(Guid companyId, bool trackChanges);
     }
 }
 

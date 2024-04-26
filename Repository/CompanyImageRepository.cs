@@ -23,9 +23,9 @@ namespace Repository
             Create(image);
         }
 
-        public async Task<CompanyImage> GetCompanyImage(Guid companyId, bool trackChanges)
+        public CompanyImage GetCompanyImage(Guid companyId, bool trackChanges)
         {
-            return await FindByCondition(c => c.CompanyId.Equals(companyId), trackChanges).SingleOrDefaultAsync();
+            return  FindByCondition(c => c.CompanyId.Equals(companyId), trackChanges).FirstOrDefault();
 
         }
 
