@@ -132,20 +132,20 @@ namespace AcheiProApi.Presentation.Controllers
 
             if (model.ImageFile != null)
             {
-                var fileResult = await _service.CompanyImageService.SaveImageToResources(model.ImageFile);
+                var fileResult = _service.CompanyImageService.SaveImageToResources(model.ImageFile);
 
-                if (fileResult.Item1 == 0)
+                if (fileResult.Result.Item1 == 0)
                 {
                     return BadRequest("Only .jpg, .png, .jpeg extensions are allowed");
                 }
 
-                if (fileResult.Item1 == 1)
+                if (fileResult.Result.Item1 == 1)
                  {
-                     model.ImageName = fileResult.Item2; // getting name of image
+                     model.ImageName = fileResult.Result.Item2; // getting name of image
 
-					 await _service.CompanyImageService.AddImageModel(model.CompanyId, model, trackChanges: false);
+					  _service.CompanyImageService.AddImageModel(model.CompanyId, model, trackChanges: false);
 
-                    var imageUri = await _service.CompanyImageService.GetImageName(model.CompanyId, trackChanges: false);
+                    var imageUri = _service.CompanyImageService.GetImageName(model.CompanyId, trackChanges: false);
 
                     return Ok(imageUri);
                 }
@@ -177,7 +177,7 @@ namespace AcheiProApi.Presentation.Controllers
                     await _service.CompanyImageService.UpdateImage(model, trackChanges: true);
                 }
 
-                var imageUri =  _service.CompanyImageService.GetImageName(model.CompanyId, trackChanges: false);
+                var imageUri = await _service.CompanyImageService.GetImageName(model.CompanyId, trackChanges: false);
 
                
                 return Ok(imageUri);
