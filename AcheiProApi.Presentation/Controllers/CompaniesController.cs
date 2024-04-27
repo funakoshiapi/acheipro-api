@@ -165,15 +165,15 @@ namespace AcheiProApi.Presentation.Controllers
 
             if (model.ImageFile != null)
             {
-                var fileResult = _service.CompanyImageService.SaveImageToResources(model.ImageFile);
+                var fileResult = await  _service.CompanyImageService.SaveImageToResources(model.ImageFile);
 
-                if (fileResult.Result.Item1 ==0)
+                if (fileResult.Item1 ==0)
                 {
                     return BadRequest("Only .jpg, .png, .jpeg extensions are allowed");
                 }
                 else
                 {
-                    model.ImageName = fileResult.Result.Item2;
+                    model.ImageName = fileResult.Item2;
                     await _service.CompanyImageService.UpdateImage(model, trackChanges: true);
                 }
 
