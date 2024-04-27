@@ -46,23 +46,18 @@ namespace Service
        public async Task<CompanyImageDto> GetImageName(Guid companyId, bool trackChanges)
         {
             await CheckIfCompanyExists(companyId, trackChanges);
-
             var imageEntity = await _repository.CompanyImage.GetCompanyImage(companyId, trackChanges).ConfigureAwait(false);
-
             // WILL BE MODIFIED LATER
-
             var imageDto = _mapper.Map<CompanyImageDto>(imageEntity);
 
             return imageDto;
-
-
         }
 
         public async Task UpdateImage(CompanyImageDto model, bool trackChanges)
         {
             var company = await CheckIfCompanyExists(model.CompanyId, trackChanges);
 
-            var imageEntity = _repository.CompanyImage.GetCompanyImage(model.CompanyId, trackChanges).Result;
+            var imageEntity = await _repository.CompanyImage.GetCompanyImage(model.CompanyId, trackChanges);
 
             imageEntity.ImageName = model.ImageName;
 
