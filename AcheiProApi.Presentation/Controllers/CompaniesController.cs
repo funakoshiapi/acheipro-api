@@ -126,7 +126,7 @@ namespace AcheiProApi.Presentation.Controllers
 
 
         [HttpPost("image")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CompanyAddImage([FromForm] CompanyImageDto model)
         {
 
@@ -157,7 +157,7 @@ namespace AcheiProApi.Presentation.Controllers
         }
 
         [HttpPut("image")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> UpdateAddImage([FromForm] CompanyImageDto model)
         {
 

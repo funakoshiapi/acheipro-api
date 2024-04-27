@@ -10,6 +10,9 @@ using Service.Contracts;
 using Shared.DataTransferObjects;
 using static System.Net.WebRequestMethods;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Service
 {
@@ -44,7 +47,7 @@ namespace Service
         {
             await CheckIfCompanyExists(companyId, trackChanges);
 
-            var imageEntity = _repository.CompanyImage.GetCompanyImage(companyId, trackChanges).Result;
+            var imageEntity = await _repository.CompanyImage.GetCompanyImage(companyId, trackChanges).ConfigureAwait(false);
 
             // WILL BE MODIFIED LATER
 
@@ -106,15 +109,51 @@ namespace Service
                 var newFileName = uniqueString + ext;
                 var fileWithPath = Path.Combine(path, newFileName);
                 var stream = new FileStream(fileWithPath, FileMode.Create);
+
                 await imageFile.CopyToAsync(stream);
                 stream.Close();
 
+                //Image img = Image.FromStream(stream);
+                
+
+                //Bitmap b = new Bitmap(img);
+
+                //Image i = ResizeImage(b, new Size(300, 300));
+
+               // i.Save(fileWithPath.Replace(newFileName, newFileName));
+
                 return new Tuple<int, string>(1, newFileName);
             }
+
             catch (Exception ex)
             {
                 return new Tuple<int, string>(0, "Error has occured");
             }
+        }
+
+        private static Image ResizeImage(Image imgToResize, Size size)
+        {
+            // Get the image current width
+            int sourceWidth = imgToResize.Width;
+            // Get the image current height
+            int sourceHeight = imgToResize.Height;
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+            // Calculate width and height with new desired size
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+            nPercent = Math.Min(nPercentW, nPercentH);
+            // New Width and Height
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            // Draw image with new width and height
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+            g.Dispose();
+            return (System.Drawing.Image)b;
         }
     }
 }
