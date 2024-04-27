@@ -20,8 +20,8 @@ using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
-//builder.WebHost.UseUrls($"http://*:{port}"); 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
+builder.WebHost.UseUrls($"http://*:{port}"); 
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
