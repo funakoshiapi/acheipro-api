@@ -60,9 +60,13 @@ namespace Service
 
             var imageEntity = await _repository.CompanyImage.GetCompanyImage(model.CompanyId, trackChanges);
 
-            imageEntity.ImageName = model.ImageName;
+            if(imageEntity != null)
+            {
+                imageEntity.ImageName = model.ImageName;
 
-            await _repository.SaveAsync();
+                await _repository.SaveAsync();
+            }
+
         }
 
 

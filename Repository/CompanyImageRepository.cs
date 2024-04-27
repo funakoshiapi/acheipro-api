@@ -26,7 +26,6 @@ namespace Repository
         public async Task<CompanyImage> GetCompanyImage(Guid companyId, bool trackChanges)
         {
             return await FindByCondition(c => c.CompanyId.Equals(companyId), trackChanges).SingleOrDefaultAsync();
-
         }
 
     }

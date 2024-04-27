@@ -129,6 +129,12 @@ namespace AcheiProApi.Presentation.Controllers
         //[Authorize]
         public async Task<IActionResult> CompanyAddImage([FromForm] CompanyImageDto model)
         {
+            var company = await _service.CompanyImageService.CheckIfCompanyExists(model.CompanyId, false);
+
+            if (company == null)
+            {
+                return BadRequest();
+            }
 
             if (model.ImageFile != null)
             {
@@ -161,7 +167,12 @@ namespace AcheiProApi.Presentation.Controllers
         public async Task<IActionResult> UpdateAddImage([FromForm] CompanyImageDto model)
         {
 
-            var company = _service.CompanyImageService.CheckIfCompanyExists(model.CompanyId, false);
+            var company = await _service.CompanyImageService.CheckIfCompanyExists(model.CompanyId, false);
+
+            if( company == null)
+            {
+                return BadRequest();
+            }
 
             if (model.ImageFile != null)
             {
