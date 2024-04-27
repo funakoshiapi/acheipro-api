@@ -63,7 +63,7 @@ namespace acheipro_api.Extensions
 		public static void ConfigureHttpCacheHeaders(this IServiceCollection services) => services.AddHttpCacheHeaders(
 			(expirationOpt) =>
 			{
-				expirationOpt.MaxAge = 65;
+				expirationOpt.MaxAge = 5;
 				expirationOpt.CacheLocation = CacheLocation.Private;
 			},
 			(validationOpt) =>

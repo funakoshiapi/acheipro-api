@@ -44,7 +44,7 @@ namespace Service
         {
             await CheckIfCompanyExists(companyId, trackChanges);
 
-            var imageEntity = _repository.CompanyImage.GetCompanyImage(companyId, trackChanges);
+            var imageEntity = _repository.CompanyImage.GetCompanyImage(companyId, trackChanges).Result;
 
             // WILL BE MODIFIED LATER
 
@@ -59,7 +59,7 @@ namespace Service
         {
             var company = await CheckIfCompanyExists(model.CompanyId, trackChanges);
 
-            var imageEntity = _repository.CompanyImage.GetCompanyImage(model.CompanyId, trackChanges);
+            var imageEntity = _repository.CompanyImage.GetCompanyImage(model.CompanyId, trackChanges).Result;
 
             imageEntity.ImageName = model.ImageName;
 

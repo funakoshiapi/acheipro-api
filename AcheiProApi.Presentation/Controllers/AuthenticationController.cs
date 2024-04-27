@@ -49,23 +49,6 @@ namespace AcheiProApi.Presentation.Controllers
 			return Ok(tokenDto);
         }
 
-        [HttpDelete("{id:guid}")]
-        [Authorize]
-        public async Task<IActionResult> DeleteUser(TokenDto tokenDto, Guid id)
-        {
-           if( await _service.AuthenticationService.DeleteUser(tokenDto))
-            {
-                await _service.CompanyService.DeleteCompanyAsync(id, trackchanges: false);
-                await _service.CompanyDataService.DeleteCompanyDataAsync(id, trackChanges: false);
-                return NoContent();
-            }
-
-            return Unauthorized();
-
-
-
-        }
-
     }
 
 
