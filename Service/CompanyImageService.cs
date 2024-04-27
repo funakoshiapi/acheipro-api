@@ -34,7 +34,7 @@ namespace Service
 
         public async Task AddImageModel(Guid companyId, CompanyImageDto image, bool trackChanges)
         {
-            var companyEntity = await CheckIfCompanyExists(image.CompanyId, trackChanges);
+            //var companyEntity = await CheckIfCompanyExists(image.CompanyId, trackChanges);
 
             var imageEntity = _mapper.Map<CompanyImage>(image);
 
@@ -45,7 +45,8 @@ namespace Service
 
        public async Task<CompanyImageDto> GetImageName(Guid companyId, bool trackChanges)
         {
-            var companyEntity =  await CheckIfCompanyExists(companyId, trackChanges);
+            //var companyEntity =  await CheckIfCompanyExists(companyId, trackChanges);
+
             var imageEntity = await _repository.CompanyImage.GetCompanyImage(companyId, trackChanges).ConfigureAwait(false);
             // WILL BE MODIFIED LATER
             var imageDto = _mapper.Map<CompanyImageDto>(imageEntity);
@@ -55,7 +56,7 @@ namespace Service
 
         public async Task UpdateImage(CompanyImageDto model, bool trackChanges)
         {
-            var company = await CheckIfCompanyExists(model.CompanyId, trackChanges);
+            //var company = await CheckIfCompanyExists(model.CompanyId, trackChanges);
 
             var imageEntity = await _repository.CompanyImage.GetCompanyImage(model.CompanyId, trackChanges);
 
