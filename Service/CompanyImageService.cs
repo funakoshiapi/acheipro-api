@@ -13,6 +13,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Service
 {
@@ -97,7 +98,7 @@ namespace Service
 
                 // Check the allowed extenstions
                 var ext = Path.GetExtension(imageFile.FileName);
-                var allowedExtensions = new string[] { ".jpg", ".png", ".jpeg" };
+                var allowedExtensions = new string[] { ".jpg", ".png", ".jpeg" , ".JPG", ".PNG", ".JPEG" };
                 if (!allowedExtensions.Contains(ext))
                 {
                     string msg = string.Format("Only {0} extensions are allowed", string.Join(",", allowedExtensions));
@@ -113,14 +114,7 @@ namespace Service
                 await imageFile.CopyToAsync(stream);
                 stream.Close();
 
-                //Image img = Image.FromStream(stream);
-                
 
-                //Bitmap b = new Bitmap(img);
-
-                //Image i = ResizeImage(b, new Size(300, 300));
-
-               // i.Save(fileWithPath.Replace(newFileName, newFileName));
 
                 return new Tuple<int, string>(1, newFileName);
             }
@@ -129,31 +123,6 @@ namespace Service
             {
                 return new Tuple<int, string>(0, "Error has occured");
             }
-        }
-
-        private static Image ResizeImage(Image imgToResize, Size size)
-        {
-            // Get the image current width
-            int sourceWidth = imgToResize.Width;
-            // Get the image current height
-            int sourceHeight = imgToResize.Height;
-            float nPercent = 0;
-            float nPercentW = 0;
-            float nPercentH = 0;
-            // Calculate width and height with new desired size
-            nPercentW = ((float)size.Width / (float)sourceWidth);
-            nPercentH = ((float)size.Height / (float)sourceHeight);
-            nPercent = Math.Min(nPercentW, nPercentH);
-            // New Width and Height
-            int destWidth = (int)(sourceWidth * nPercent);
-            int destHeight = (int)(sourceHeight * nPercent);
-            Bitmap b = new Bitmap(destWidth, destHeight);
-            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            // Draw image with new width and height
-            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
-            g.Dispose();
-            return (System.Drawing.Image)b;
         }
     }
 }
