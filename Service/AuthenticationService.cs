@@ -37,6 +37,19 @@ namespace Service
 
         }
 
+        public async Task<bool> DeleteUser(TokenDto tokenDto)
+        {
+            var principal = GetPrincipalFromExpiredToken(tokenDto.AccessToken);
+            var user = await _userManager.FindByNameAsync(principal.Identity.Name);
+
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+                return true;
+            }
+            return false;
+        }
+
 
         public async Task<IdentityResult> RegisterUser(UserForRegistrationDto userForRegistration)
         {

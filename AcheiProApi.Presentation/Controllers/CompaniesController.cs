@@ -103,9 +103,7 @@ namespace AcheiProApi.Presentation.Controllers
         [Authorize]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyCreationDto company)
 		{
-
             var createdCompany = await _service.CompanyService.CreateCompanyAsync(company);
-
 			return CreatedAtRoute("CompanyById", new { id = createdCompany.Id }, createdCompany);
 		}
 
@@ -126,7 +124,7 @@ namespace AcheiProApi.Presentation.Controllers
 
 
         [HttpPost("image")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> CompanyAddImage([FromForm] CompanyImageDto model)
         {
             var company = await _service.CompanyImageService.CheckIfCompanyExists(model.CompanyId, false);
@@ -163,7 +161,7 @@ namespace AcheiProApi.Presentation.Controllers
         }
 
         [HttpPut("image")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateAddImage([FromForm] CompanyImageDto model)
         {
 
