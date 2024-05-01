@@ -312,19 +312,19 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "82498827-00c4-4f8d-8f5e-3ad3736feff5",
+                            Id = "90a85a99-b108-465a-a1cd-bccffab31b13",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "be8383d4-6cb6-499a-8ba5-48144622e00a",
+                            Id = "c119f55f-f8b7-484d-ac52-87957ad53fb3",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "76f6df52-01bd-46c8-a167-3287356c9474",
+                            Id = "9a86be0a-c07c-4129-b922-1822297d604c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
