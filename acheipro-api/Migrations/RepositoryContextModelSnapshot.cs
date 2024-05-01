@@ -113,28 +113,6 @@ namespace acheipro_api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("af58eeaa-9f5b-11ee-8c90-0242ac120002"),
-                            Address = "Golfe 2, Rua 3",
-                            Country = "Angola",
-                            Industry = "Juridicos",
-                            Name = "Luanda Legal LLC",
-                            Province = "Luanda",
-                            Role = "Advogado"
-                        },
-                        new
-                        {
-                            Id = new Guid("c0f33166-9f5b-11ee-8c90-0242ac120002"),
-                            Address = "Talatona, Rua 6",
-                            Country = "Angola",
-                            Industry = "Contabilidade",
-                            Name = "Contabilistical LLC",
-                            Province = "Luanda",
-                            Role = "Contabilidade"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.CompanyData", b =>
@@ -145,7 +123,6 @@ namespace acheipro_api.Migrations
                         .HasColumnName("CompanyDataId");
 
                     b.Property<string>("CompanyDescription")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -154,7 +131,6 @@ namespace acheipro_api.Migrations
                         .HasColumnName("CompanyId");
 
                     b.Property<string>("CompanyMission")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -207,22 +183,6 @@ namespace acheipro_api.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("6f37f3af-7ba0-4365-a98f-924c9a865c8d"),
-                            CompanyId = new Guid("af58eeaa-9f5b-11ee-8c90-0242ac120002"),
-                            Name = "Felipe Sousa",
-                            Position = "Software Developer"
-                        },
-                        new
-                        {
-                            Id = new Guid("7437b1bb-21ac-4d65-aaf5-c689da20b50d"),
-                            CompanyId = new Guid("c0f33166-9f5b-11ee-8c90-0242ac120002"),
-                            Name = "Mbula Matadi",
-                            Position = "Director Relacoes Publicas"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
@@ -304,6 +264,25 @@ namespace acheipro_api.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.PasswordRecovery", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("RecoveryId");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PasswordRecoveries");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -332,19 +311,19 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ca820c54-9100-4f60-bc31-e641ca1ab51d",
+                            Id = "fbd3b740-cb74-41d1-a5c5-9fb148ee1f55",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "463fa19e-6e18-4fe0-9b94-0b3d81818b3b",
+                            Id = "e6dd552e-4ab8-44e1-bb20-88851073d630",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "97cb6a6f-e843-4d5d-8b4d-5fd64e4a439b",
+                            Id = "d216254e-eeb0-496b-aa32-3713cf09b8d2",
                             Name = "User",
                             NormalizedName = "USER"
                         });
