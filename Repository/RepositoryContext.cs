@@ -1,4 +1,5 @@
 ﻿using System;
+using Entities;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,8 @@ namespace Repository
 		public DbSet<CompanyImage>? CompanyImages { get; set; }
 		public DbSet<CompanyData>? CompanyDatas { get; set; }
 		public DbSet<ClientMessage> ? ClientMessages { get; set; }
+
+		public DbSet<PasswordRecovery>? PasswordRecoveries { get; set; }
 
     }
 }
