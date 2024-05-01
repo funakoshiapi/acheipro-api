@@ -16,5 +16,17 @@
         <member name="M:acheipro_api.Migrations.clientMessage5.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:acheipro_api.Migrations.passwordRecovery">
+            <inheritdoc />
+        </member>
+        <member name="M:acheipro_api.Migrations.passwordRecovery.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:acheipro_api.Migrations.passwordRecovery.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:acheipro_api.Migrations.passwordRecovery.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

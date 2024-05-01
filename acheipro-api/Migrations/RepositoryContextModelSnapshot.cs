@@ -271,8 +271,9 @@ namespace acheipro_api.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("RecoveryId");
 
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -311,19 +312,19 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "fbd3b740-cb74-41d1-a5c5-9fb148ee1f55",
+                            Id = "82498827-00c4-4f8d-8f5e-3ad3736feff5",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "e6dd552e-4ab8-44e1-bb20-88851073d630",
+                            Id = "be8383d4-6cb6-499a-8ba5-48144622e00a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "d216254e-eeb0-496b-aa32-3713cf09b8d2",
+                            Id = "76f6df52-01bd-46c8-a167-3287356c9474",
                             Name = "User",
                             NormalizedName = "USER"
                         });

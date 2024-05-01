@@ -1,6 +1,8 @@
 ﻿using System;
 using AutoMapper;
+using Entities;
 using Entities.Models;
+using Shared;
 using Shared.DataTransferObjects;
 
 namespace acheipro_api
@@ -27,6 +29,7 @@ namespace acheipro_api
 			CreateMap<CompanyImageDto, CompanyImage>();
 			CreateMap<CompanyImage, CompanyImageDto>();
 			CreateMap<ClientMessageDto, ClientMessage>();
+			CreateMap<PasswordRecoveryDto, PasswordRecovery>();
         }
 
 	}
