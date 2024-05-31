@@ -20,8 +20,8 @@ using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
-//builder.WebHost.UseUrls($"http://*:{port}"); 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8081";
+builder.WebHost.UseUrls($"http://*:{port}"); 
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
@@ -68,11 +68,11 @@ builder.Services.ConfigureSwagger();
 
 var app = builder.Build();
 
-/*  using (var scope = app.Services.CreateScope())
+ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<RepositoryContext>();
     db.Database.Migrate();
-} */
+} 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
