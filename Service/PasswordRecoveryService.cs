@@ -26,7 +26,9 @@ public class PasswordRecoveryService : IPasswordRecoveryService
 
     public async Task<bool> UpdatePassword(PasswordRecoveryDto passwordRecovery, Guid id)
     {
-        _user = await _userManager.FindByEmailAsync( passwordRecovery.Email );
+        // DTO needs to accomodate username too, rigth now username is being passed to the email field 
+
+        _user = await _userManager.FindByNameAsync( passwordRecovery.Email );
         var entity = await  _repository.PasswordRecovery.GetPasswordRecovery(id);
         
         if (_user != null && entity != null)
