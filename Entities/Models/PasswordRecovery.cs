@@ -5,7 +5,6 @@ namespace Entities;
 public class PasswordRecovery
 {
     [Column("RecoveryId")]
-    public required Guid Id{ get; set; }
-    public required Guid CompanyId { get; set; }
-    public required string UserName { get; set; }
+    public Guid Id{ get; set; }
+    public string? Email { get; set; }
 }

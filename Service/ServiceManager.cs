@@ -18,6 +18,7 @@ namespace Service
 		private readonly Lazy<ICompanyImageService> _companyImageService;
         private readonly Lazy<ICompanyDataService> _companyDataService;
 		private readonly Lazy<ISendEmail> _sendEmailService;
+		private readonly Lazy<IPasswordRecoveryService> _passwordRecoveryService;
 
         public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, UserManager<User> userManager, IConfiguration configuration, IWebHostEnvironment environment, IOptions<SmtpSettings> smtpSettings)
 		{
@@ -28,6 +29,7 @@ namespace Service
 				new AuthenticationService(logger, mapper, userManager, configuration));
 			_companyImageService = new Lazy<ICompanyImageService>(() => new CompanyImageService(repositoryManager, logger, mapper, environment));
 			_sendEmailService = new Lazy<ISendEmail>(() => new SendEmail(smtpSettings, environment, mapper, repositoryManager));
+			_passwordRecoveryService = new Lazy<IPasswordRecoveryService>(() => new PasswordRecoveryService(userManager, repositoryManager, logger, mapper));
         }
 
 		public ICompanyService CompanyService => _companyService.Value;
@@ -36,6 +38,7 @@ namespace Service
         public ICompanyImageService CompanyImageService => _companyImageService.Value;
         public IAuthenticationService AuthenticationService => _authenticationService.Value;
 		public ISendEmail SendEmailService => _sendEmailService.Value;
+		public IPasswordRecoveryService PasswordRecoveryService => _passwordRecoveryService.Value;
 
     }
 }

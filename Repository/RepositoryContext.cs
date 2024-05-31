@@ -29,7 +29,6 @@ namespace Repository
 		public DbSet<CompanyImage>? CompanyImages { get; set; }
 		public DbSet<CompanyData>? CompanyDatas { get; set; }
 		public DbSet<ClientMessage> ? ClientMessages { get; set; }
-
 		public DbSet<PasswordRecovery>? PasswordRecoveries { get; set; }
 
     }

@@ -3,6 +3,7 @@ using AcheiProApi.Presentation.ActionFilters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
+using Shared;
 using Shared.DataTransferObjects;
 
 namespace AcheiProApi.Presentation.Controllers
@@ -35,6 +36,34 @@ namespace AcheiProApi.Presentation.Controllers
 		}
 
 
+        [HttpPost("passwordUpdate")]
+        public async Task<IActionResult> PasswordUpdate([FromBody] PasswordRecoveryDto passwordUpdate, Guid requestId)
+        {
+           var result =  await _service.PasswordRecoveryService.UpdatePassword(passwordUpdate, requestId);
+           if(!result)
+           {
+                return BadRequest();
+           }
+
+         await _service.PasswordRecoveryService.DeleteRequest(requestId);
+           
+           return Ok();
+        }
+
+        [HttpPost("passwordUpdateRequest")]
+        public async Task<IActionResult> PasswordUpdateRequest([FromBody] PasswordRecoveryDto passwordUpdate)
+        {
+           var result =  await _service.PasswordRecoveryService.GeneratePasswordRequest(passwordUpdate);
+           if(result != null)
+           {    
+                await _service.SendEmailService.SendRecoveryPasswordEmail(passwordUpdate, result.Id);
+                return Ok();
+           }
+            return NoContent();
+        }
+        
+
+
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
@@ -50,7 +79,7 @@ namespace AcheiProApi.Presentation.Controllers
         }
 
         [HttpDelete()]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> DeleteUser(TokenDto tokenDto, string userName)
         {
 
@@ -62,15 +91,12 @@ namespace AcheiProApi.Presentation.Controllers
                 {
                     await _service.CompanyService.DeleteCompanyAsync((Guid)user.CompanyId, trackchanges: false);
                     await _service.CompanyDataService.DeleteCompanyDataAsync((Guid)user.CompanyId, trackChanges: false);
-
                 }
 
                 return Ok();
-           }
+            }
 
             return Unauthorized();
-            
-
         }
 
             

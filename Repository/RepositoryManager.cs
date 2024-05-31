@@ -12,6 +12,8 @@ namespace Repository
         private readonly Lazy<ICompanyDataRepository> _companyDataRepository;
         private readonly Lazy<IClientMessageRepository> _ClientMessageRepository;
 
+        private readonly Lazy<IPasswordRecoveryRepository> _passwordRecoveryRepository;
+
         public RepositoryManager(RepositoryContext repositoryContext)
 		{
             _repositoryContext = repositoryContext;
@@ -20,7 +22,7 @@ namespace Repository
             _companyImageRepository = new Lazy<ICompanyImageRepository>(() => new CompanyImageRepository(repositoryContext));
             _companyDataRepository = new Lazy<ICompanyDataRepository>(() => new CompanyDataRepository(repositoryContext));
             _ClientMessageRepository = new Lazy<IClientMessageRepository>(() => new ClientMessageRepository(repositoryContext));
-
+            _passwordRecoveryRepository = new Lazy<IPasswordRecoveryRepository>(() => new PasswordRecoveryRepository(repositoryContext));  
         }
 
         public ICompanyRepository Company => _companyRepository.Value;
@@ -28,6 +30,7 @@ namespace Repository
         public ICompanyImageRepository CompanyImage => _companyImageRepository.Value;
         public ICompanyDataRepository CompanyData => _companyDataRepository.Value;
         public IClientMessageRepository ClientMessage => _ClientMessageRepository.Value;
+        public IPasswordRecoveryRepository PasswordRecovery => _passwordRecoveryRepository.Value;
         public async Task SaveAsync() => await  _repositoryContext.SaveChangesAsync();
     }
 }

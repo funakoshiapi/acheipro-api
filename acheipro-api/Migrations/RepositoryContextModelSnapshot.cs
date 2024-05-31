@@ -272,11 +272,6 @@ namespace acheipro_api.Migrations
                         .HasColumnName("RecoveryId");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -312,19 +307,19 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "90a85a99-b108-465a-a1cd-bccffab31b13",
+                            Id = "9c6a6a15-5f41-4129-96e8-9fbc38d9dbb9",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "c119f55f-f8b7-484d-ac52-87957ad53fb3",
+                            Id = "9312f3f0-1406-4c85-b199-1b37be945a60",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "9a86be0a-c07c-4129-b922-1822297d604c",
+                            Id = "afb5bb46-481a-4b7b-9b6b-242fa81c73de",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -8,6 +8,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using AutoMapper;
 using Shared.DataTransferObjects;
+using Shared;
 
 namespace Service
 {
@@ -60,6 +61,58 @@ namespace Service
                     await client.SendAsync(message);
                     await client.DisconnectAsync(true);
                     await  SaveMessage(clientMessage);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
+        
+    }
+
+
+        public async Task SendRecoveryPasswordEmail(PasswordRecoveryDto passwordRecoveryDto, Guid recoveryId)
+        {
+            try
+            {
+                var message = new MimeMessage();
+
+                message.From.Add(new MailboxAddress(_smtpSettings.SenderName, _smtpSettings.SenderEmail));
+                message.To.Add(new MailboxAddress(passwordRecoveryDto.Email, passwordRecoveryDto.Email));
+                message.Subject = $"AcheiPro - Pedido De Recuperação De Palava-Chave";
+
+                 string emailBody = $"<h2>Pedido De Recuperação De Palava-Chave</h2>" +
+                               $"<body>" +
+                               $"<div>" +
+                               $"<b>Mensagem:</b>" +
+                               $"<p>Por favor click no link para renovar a sua palavra-chave: <a href={"https://acheipro.netlify.app/recuperar-chave/"+recoveryId}>Renove Palavra-Chave</a></p>" +
+                               "</div>" +
+                               $"</body>";
+
+                message.Body = new TextPart("html")
+                {
+                    Text = emailBody
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                    if (_env.IsDevelopment())
+                    {
+                        await client.ConnectAsync(_smtpSettings.Server,
+                _smtpSettings.Port, true);
+                    }
+                    else
+                    {
+                        await client.ConnectAsync(_smtpSettings.Server);
+
+                    }
+
+                    await client.AuthenticateAsync(_smtpSettings.Username,
+                                                   _smtpSettings.Password);
+                    await client.SendAsync(message);
+                    await client.DisconnectAsync(true);
                 }
             }
             catch (Exception e)

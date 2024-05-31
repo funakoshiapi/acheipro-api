@@ -11,6 +11,7 @@ namespace Service.Contracts
 		ICompanyDataService CompanyDataService { get; }
 		IAuthenticationService AuthenticationService { get; }
         ISendEmail SendEmailService { get; }
+		IPasswordRecoveryService PasswordRecoveryService { get; }
     }
 }
 

@@ -8,6 +8,7 @@ namespace Contracts
 		ICompanyDataRepository CompanyData { get; }
         ICompanyImageRepository CompanyImage {get; }
 		IClientMessageRepository ClientMessage { get; }
+		IPasswordRecoveryRepository PasswordRecovery{ get; }
 		Task SaveAsync();
 	}
 }
