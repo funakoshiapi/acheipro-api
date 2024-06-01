@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace acheipro_api.Migrations
 {
     /// <inheritdoc />
-    public partial class passwordRecovery4 : Migration
+    public partial class new2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -133,8 +133,7 @@ namespace acheipro_api.Migrations
                 columns: table => new
                 {
                     RecoveryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    UserName = table.Column<string>(type: "text", nullable: true)
+                    Email = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -272,9 +271,9 @@ namespace acheipro_api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0104bbed-56e6-454b-b701-9f3647148223", null, "Administrator", "ADMINISTRATOR" },
-                    { "30f745a4-734d-4d99-9a83-f0b4a9cac330", null, "Manager", "MANAGER" },
-                    { "45ad20e7-eafa-439a-be1c-fcdf907e154d", null, "User", "USER" }
+                    { "64365909-9161-4523-9b4c-829c2bfcb63f", null, "Administrator", "ADMINISTRATOR" },
+                    { "da932f7b-9be3-419a-8160-c3782740bde9", null, "User", "USER" },
+                    { "e2008cde-9c61-43cb-858f-8d1cb7bbf6b2", null, "Manager", "MANAGER" }
                 });
 
             migrationBuilder.CreateIndex(

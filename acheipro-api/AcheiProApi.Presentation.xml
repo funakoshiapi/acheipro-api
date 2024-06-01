@@ -4,28 +4,16 @@
         <name>acheipro-api</name>
     </assembly>
     <members>
-        <member name="T:acheipro_api.Migrations.passwordRecovery4">
+        <member name="T:acheipro_api.Migrations.new2">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.passwordRecovery4.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:acheipro_api.Migrations.new2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.passwordRecovery4.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:acheipro_api.Migrations.new2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:acheipro_api.Migrations.passwordRecovery4.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:acheipro_api.Migrations.passwordRecovery5">
-            <inheritdoc />
-        </member>
-        <member name="M:acheipro_api.Migrations.passwordRecovery5.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:acheipro_api.Migrations.passwordRecovery5.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:acheipro_api.Migrations.passwordRecovery5.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:acheipro_api.Migrations.new2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

@@ -12,8 +12,8 @@ using Repository;
 namespace acheipro_api.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240501190242_passwordRecovery4")]
-    partial class passwordRecovery4
+    [Migration("20240601005844_new2")]
+    partial class new2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -277,9 +277,6 @@ namespace acheipro_api.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.ToTable("PasswordRecoveries");
@@ -313,19 +310,19 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "30f745a4-734d-4d99-9a83-f0b4a9cac330",
+                            Id = "e2008cde-9c61-43cb-858f-8d1cb7bbf6b2",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "0104bbed-56e6-454b-b701-9f3647148223",
+                            Id = "64365909-9161-4523-9b4c-829c2bfcb63f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "45ad20e7-eafa-439a-be1c-fcdf907e154d",
+                            Id = "da932f7b-9be3-419a-8160-c3782740bde9",
                             Name = "User",
                             NormalizedName = "USER"
                         });
