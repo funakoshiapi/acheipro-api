@@ -28,7 +28,7 @@ public class PasswordRecoveryService : IPasswordRecoveryService
     {
         // DTO needs to accomodate username too, rigth now username is being passed to the email field 
 
-        _user = await _userManager.FindByNameAsync( passwordRecovery.Email );
+        _user = await _userManager.FindByEmailAsync( passwordRecovery.Email );
         var entity = await  _repository.PasswordRecovery.GetPasswordRecovery(id);
         
         if (_user != null && entity != null)

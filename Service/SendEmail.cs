@@ -85,7 +85,7 @@ namespace Service
                                $"<body>" +
                                $"<div>" +
                                $"<b>Mensagem:</b>" +
-                               $"<p>Por favor click no link para renovar a sua palavra-chave: <a href={"https://acheipro.netlify.app/recuperar-chave/"+recoveryId}>Renove Palavra-Chave</a></p>" +
+                               $"<p>Por favor click no link para renovar a sua palavra-chave: <a href={"https://acheipro.netlify.app/recuperar-chave/"+recoveryId +"/" + passwordRecoveryDto.Email}>Renove Palavra-Chave</a></p>" +
                                "</div>" +
                                $"</body>";
 
