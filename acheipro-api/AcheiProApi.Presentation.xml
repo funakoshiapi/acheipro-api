@@ -16,5 +16,17 @@
         <member name="M:acheipro_api.Migrations.new2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:acheipro_api.Migrations.newAttributes">
+            <inheritdoc />
+        </member>
+        <member name="M:acheipro_api.Migrations.newAttributes.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:acheipro_api.Migrations.newAttributes.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:acheipro_api.Migrations.newAttributes.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

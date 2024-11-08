@@ -80,10 +80,16 @@ namespace acheipro_api.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("character varying(60)");
 
+                    b.Property<bool>("Claimed")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Country")
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Facebook")
                         .HasColumnType("text");
 
                     b.Property<string>("ImageName")
@@ -108,6 +114,9 @@ namespace acheipro_api.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Website")
+                        .HasColumnType("text");
+
+                    b.Property<string>("X")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -307,19 +316,19 @@ namespace acheipro_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e2008cde-9c61-43cb-858f-8d1cb7bbf6b2",
+                            Id = "2744298c-d049-4f7c-ae8a-eb72f0f3e018",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "64365909-9161-4523-9b4c-829c2bfcb63f",
+                            Id = "a1023cb1-66ec-4be9-8b9e-390b63360e6d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "da932f7b-9be3-419a-8160-c3782740bde9",
+                            Id = "76ad585e-aa77-4935-8cfb-7cfac6de6893",
                             Name = "User",
                             NormalizedName = "USER"
                         });
